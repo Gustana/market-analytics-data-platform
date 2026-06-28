@@ -4,7 +4,7 @@ from pydantic import BaseModel, ConfigDict
 
 class _ExchangeDate(BaseModel):
     date: datetime
-    timezone_type: str
+    timezone_type: int
     timezone: str
 
 
@@ -12,7 +12,7 @@ class _StockExchange(BaseModel):
     name: str
     acronym: str
     mic: str
-    country: str
+    country: str | None = None
     country_code: str
     city: str
     website: str

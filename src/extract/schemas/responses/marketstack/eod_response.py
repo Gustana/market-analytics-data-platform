@@ -1,19 +1,20 @@
 from pydantic import BaseModel, ConfigDict
 
-from ..common_response import Paggination
+from ..common_response import PaginationRecords
 
 class _EodRecord(BaseModel):
-    open: int
-    high: int
-    low: int
-    close: int
-    volume: int
+    open: float
+    high: float
+    low: float
+    close: float | None = None
+    volume: float
     name: str
-    exchange_code: str
+    exchange_code: str | None = None
+    price_currency: str
     date: str
 
 class EodResponse(BaseModel):
     model_config = ConfigDict(frozen=True)
 
-    paggination: Paggination
+    pagination: PaginationRecords
     data: list[_EodRecord]
